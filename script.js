@@ -57,11 +57,9 @@ btnDecrypt.addEventListener('click', () => {
 
 function decrypt(letter) {
     let charc = (letter.charCodeAt(0) - displacement - 65)
-    if (charc != parseInt(charc)) {
-        console.log("if = true; charc >>> " + charc)
+    if (charc == Math.abs(charc)) {
         return charc + 65;
     } else {
-        console.log("if = false; charc >>> " + 91 + charc); 
         return (26 + charc + 65);
     }
 }
