@@ -1,14 +1,14 @@
 const btnEncrypt = document.querySelector("#btnEncrypt")
 const btnDecrypt = document.querySelector("#btnDecrypt")
-const btnCopy = document.querySelector(".genTxt button")
-const input = document.querySelector("main div input")
-const textGenerated = document.querySelector(".genTxt p")
+const btnCopy = document.querySelector("#copy-text button")
+const textarea = document.querySelector("main div textarea")
+const textGenerated = document.querySelector(".genTxt input")
 const genTxt = document.querySelector("#genTxt")
 const noMsg = document.querySelector("#noMsg")
 let displacement = 3;
 
-input.addEventListener('change', () => {
-    if (input.value === "") {
+textarea.addEventListener('change', () => {
+    if (textarea.value === "") {
         btnDecrypt.setAttribute('disabled', true)
         btnEncrypt.setAttribute('disabled', true);
     }
@@ -22,7 +22,7 @@ input.addEventListener('change', () => {
 btnEncrypt.addEventListener('click', () => {
 	let output = "";
 	
-	for (let letter of input.value.toLocaleUpperCase()) {
+	for (let letter of textarea.value.toLocaleUpperCase()) {
         if (letter == " ") {
             output += " ";
         }
@@ -31,7 +31,7 @@ btnEncrypt.addEventListener('click', () => {
         }
 	}
 	
-	textGenerated.innerText = output;
+	textGenerated.value= output;
 
     noMsg.style.display = "none";
     genTxt.style.display = "flex";
@@ -40,7 +40,7 @@ btnEncrypt.addEventListener('click', () => {
 btnDecrypt.addEventListener('click', () => {
 	let output = "";
 	
-	for (let letter of input.value.toLocaleUpperCase()) {
+	for (let letter of textarea.value.toLocaleUpperCase()) {
         if (letter == " ") {
             output += " ";
         }
@@ -49,7 +49,7 @@ btnDecrypt.addEventListener('click', () => {
         }
 	}
 	
-	textGenerated.innerText = output;
+	textGenerated.value= output;
     
     noMsg.style.display = "none";
     genTxt.style.display = "flex";
@@ -67,7 +67,12 @@ function decrypt(letter) {
 }
 
 btnCopy.addEventListener('click', () => {
-    document.execCommand("copy");
-    alert("O texto é: " + textGenerated.textContent);
-    document.queryCommandValue("copy")
+    textGenerated.select();
+    document.execCommand('copy');
+    let copyText = document.querySelector("#copy-text");
+    copyText.classList.add("active")
+    window.getSelection().removeAllRanges();
+    setTimeout(() => {
+        copyText.classList.remove("active")
+    }, 2000);
 });

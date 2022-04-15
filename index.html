@@ -11,7 +11,9 @@
     <object class="logo" data="./images/logo.svg" style="position: absolute;"></object>
     <main>
 
-        <div><input type="text" class="text" style="--fs: 32px; --c: var(--dark);" placeholder="Type your text here..."></div>
+        <div>
+            <textarea class="text" style="--fs: 32px; --c: var(--dark);" placeholder="Type your text here..."></textarea>
+        </div>
         <footer>
 
             <span class="text" style="--fs: 12px; --c: var(--alert);">
@@ -38,11 +40,14 @@
         <div class="genTxt" id="genTxt">
             <div>
                 <h2 class="text" style="--fs: 32px; --c: var(--dark);">Generated Text</h2>
-            <p></p>
+                <input class="text" style="--fs: 16px; --c: var(--dark);" type="text" readonly>
             </div>
-            <button>Copy</button>
+            <div id="copy-text">
+                <button>Copy</button>
+            </div>
         </div>
     </aside>
     <script src="./script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </body>
 </html>
