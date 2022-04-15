@@ -1,0 +1,96 @@
+:root {
+    --aside-color: #fff;
+    --bg-color: #F3F5FC;
+    --dark: #0A3871;
+    --light: #D8DFE8;
+    --alert: #495057;
+    --bg-border: 40px;
+}
+
+body {
+    margin: var(--bg-border);
+    background-color: var(--bg-color);
+    font-family: 'Inter';
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    justify-content: space-between;
+    cursor: default;
+}
+
+main {
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+
+main div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main div input {
+    border: none;
+    background: none;
+    width: 100%;
+    height: 100%;
+}
+
+main footer {
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+aside {
+    height: calc(100vh - var(--bg-border) * 2);
+    padding: 0 20px;
+    background-color: var(--aside-color);
+    border-radius: 32px;
+}
+
+.genTxt {
+    display: none;
+    justify-content: space-between;
+    flex-direction: column;
+    height: calc(100% - 20px * 2); /* Paddind of Aside */
+}
+
+.noMsg {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: calc(100% - 20px * 2); /* Paddind of Aside */
+}
+
+button {
+    padding: 25px 100px;
+    background-color: var(--light);
+    border: 1px solid var(--dark);
+    border-radius: 24px;
+    color: var(--dark);
+    font-size: 16px;
+    cursor: not-allowed;
+    margin: 10px;
+}
+
+button:not([disabled]) {
+    background-color: var(--dark);
+    color: var(--light);
+    cursor: pointer;
+}
+
+button:not([disabled]):hover {
+    opacity: .8;
+}
+
+.text {
+    font-size: var(--fs);
+    color: var(--c);
+}
+
+input:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}

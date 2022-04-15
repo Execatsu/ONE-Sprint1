@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Encoder</title>
+</head>
+<body>
+    <object class="logo" data="./images/logo.svg" style="position: absolute;"></object>
+    <main>
+
+        <div><input type="text" class="text" style="--fs: 32px; --c: var(--dark);" placeholder="Type your text here..." onchange="a()"></div>
+        <footer>
+
+            <span class="text" style="--fs: 12px; --c: var(--alert);">
+
+                <object data="./images/exclamation.svg" width="10"></object>
+                Only unaccented messages!
+            </span>
+            <div style="display: flex;">
+
+                <button id="btnEncrypt" disabled>Encrypt</button>
+                <button id="btnDecrypt" disabled>Decrypt</button>
+            </div>
+        </footer>
+    </main>
+    <aside>
+        <div class="noMsg" id="noMsg">
+            <object data="./images/noMessage.svg"></object>
+            <section>
+
+                <h2 class="text" style="--fs: 24px; --c: var(--alert);">No message found</h2>
+                <p class="text" style="--fs: 16px; --c: var(--alert);" >Type a text that you want encrypt or decrypt.</p>
+            </section>
+        </div>
+        <div class="genTxt" id="genTxt">
+            <div>
+                <h2 class="text" style="--fs: 32px; --c: var(--dark);">Generated Text</h2>
+            <p></p>
+            </div>
+            <button>Copy</button>
+        </div>
+    </aside>
+    <script src="./script.js"></script>
+</body>
+</html>
