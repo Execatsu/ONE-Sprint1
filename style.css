@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap'); /* Inter */
+
 :root {
     --aside-color: #fff;
     --bg-color: #F3F5FC;
@@ -7,13 +9,17 @@
     --bg-border: 40px;
 }
 
+* { resize: none; outline: none; }
+
+input, textarea, button { font-family: 'Inter'; }
+
 body {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 3fr 1fr;
     margin: var(--bg-border);
     background-color: var(--bg-color);
     font-family: 'Inter';
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    justify-content: space-between;
     cursor: default;
 }
 
@@ -22,33 +28,28 @@ main {
     grid-template-rows: 1fr auto;
 }
 
-main div {
+main div, main footer {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
-main div textarea {
-    border: none;
+main footer {
+    flex-direction: column;
+    padding: 40px;
+}
+
+.typedTxt {
     background: none;
+    border: none;
     min-width: 50vw;
     max-width: 50vw;
     min-height: 600px;
     max-height: 600px;
     text-align: center;
 }
-
-main div textarea::placeholder {
-    text-align: center;
-}
-
-main footer {
-    padding: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
+.typedTxt::placeholder { text-align: center; }
+.typedTxt::-webkit-scrollbar, .genTxt div:nth-of-type(1)::-webkit-scrollbar { display: none; }
 
 aside {
     height: calc(100vh - var(--bg-border) * 2);
@@ -64,12 +65,17 @@ aside {
     height: calc(100% - 20px * 2); /* Paddind of Aside */
 }
 
-.genTxt div input {
-    border: none;
-    background: none;
+.genTxt div:nth-of-type(1) {
+    width: 22vw;
+    height: 100%;
+    word-wrap: break-word;
+    overflow: scroll;
+}
+
+.genTxt div p {
     width: 100%;
     height: 100%;
-    cursor: default;
+    cursor: default; 
 }
 
 #copy-text {
@@ -78,29 +84,29 @@ aside {
     position: relative;
 }
 
+#copy-text button::before,
+#copy-text button::after {
+    display: none;
+    right: 50%;
+    position: absolute;
+    background: var(--dark);
+}
+
 #copy-text button::before {
     content: "Copied";
-    position: absolute;
-    top: -47%;
-    right: 50%;
-    background: var(--dark);
     padding: 8px 10px;
+    top: -47%;
     border-radius: 20px;
     font-size: 15px;
     transform: translateX(50%);
-    display: none;
 }
 
 #copy-text button::after {
     content: "";
-    position: absolute;
     top: -17%;
-    right: 50%;
     width: 10px;
     height: 10px;
-    background: var(--dark);
     transform: rotate(45deg);
-    display: none;
 }
 
 #copy-text.active button::after,
@@ -112,18 +118,18 @@ aside {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    height: calc(100% - 20px * 2); /* Paddind of Aside */
+    height: calc(100% - 20px * 2);
 }
 
 button {
+    margin: 10px;
     padding: 25px 100px;
-    background-color: var(--light);
     border: 1px solid var(--dark);
     border-radius: 24px;
+    background-color: var(--light);
     color: var(--dark);
     font-size: 16px;
     cursor: not-allowed;
-    margin: 10px;
 }
 
 button:not([disabled]) {
@@ -132,16 +138,6 @@ button:not([disabled]) {
     cursor: pointer;
 }
 
-button:not([disabled]):active {
-    opacity: .8;
-}
+button:not([disabled]):active { opacity: .8; }
 
-.text {
-    font-size: var(--fs);
-    color: var(--c);
-}
-
-textarea:focus, input:focus {
-    box-shadow: 0 0 0 0;
-    outline: 0;
-}
+.text { font-size: var(--fs); color: var(--c); }

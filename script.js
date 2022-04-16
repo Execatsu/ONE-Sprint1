@@ -1,76 +1,63 @@
-const btnEncrypt = document.querySelector("#btnEncrypt")
-const btnDecrypt = document.querySelector("#btnDecrypt")
-const btnCopy = document.querySelector("#copy-text button")
-const textarea = document.querySelector("main div textarea")
-const textGenerated = document.querySelector(".genTxt input")
-const genTxt = document.querySelector("#genTxt")
-const noMsg = document.querySelector("#noMsg")
+const btnEncrypt = document.querySelector("#btnEncrypt");
+const btnDecrypt = document.querySelector("#btnDecrypt");
+const textarea = document.querySelector("main div textarea");
+const textGenerated = document.getElementById('genTxtP');
+
 let displacement = 3;
 
-textarea.addEventListener('change', () => {
-    if (textarea.value === "") {
-        btnDecrypt.setAttribute('disabled', true)
-        btnEncrypt.setAttribute('disabled', true);
-    }
-    else {
-        btnDecrypt.removeAttribute('disabled');
-        btnEncrypt.removeAttribute('disabled');
-    }
-}
-);
+btnDecrypt.addEventListener('click', () => {main('decrypt')});
+btnEncrypt.addEventListener('click', () => {main('encrypt')});
 
-btnEncrypt.addEventListener('click', () => {
+function main(type) {
 	let output = "";
 	
 	for (let letter of textarea.value.toLocaleUpperCase()) {
+
         if (letter == " ") {
             output += " ";
+            continue;
         }
-		else {
-            output += String.fromCharCode(65 + (((letter.charCodeAt(0) - 65) + displacement) % 26));
-        }
-	}
-	
-	textGenerated.value= output;
 
-    noMsg.style.display = "none";
-    genTxt.style.display = "flex";
-});
-
-btnDecrypt.addEventListener('click', () => {
-	let output = "";
-	
-	for (let letter of textarea.value.toLocaleUpperCase()) {
-        if (letter == " ") {
-            output += " ";
-        }
-		else {
+        if (type === 'decrypt') {
             output += String.fromCharCode(decrypt(letter));
+            continue;
         }
+
+        output += String.fromCharCode(65 + (((letter.charCodeAt(0) - 65) + displacement) % 26));
 	}
 	
-	textGenerated.value= output;
+	textGenerated.textContent= output;
     
-    noMsg.style.display = "none";
-    genTxt.style.display = "flex";
-});
+    document.getElementById('noMsg').style.display = "none";
+    document.getElementById('genTxt') .style.display = "flex";
+}
 
 function decrypt(letter) {
-    let charc = (letter.charCodeAt(0) - displacement - 65)
-    if (charc == Math.abs(charc)) {
-        return charc + 65;
-    } else {
-        return (26 + charc + 65);
-    }
+    let charc = (letter.charCodeAt(0) - displacement - 65);
+
+    if (charc == Math.abs(charc)) { return charc + 65; }
+    else { return (26 + charc + 65); }
 }
 
-btnCopy.addEventListener('click', () => {
-    textGenerated.select();
-    document.execCommand('copy');
-    let copyText = document.querySelector("#copy-text");
-    copyText.classList.add("active")
-    window.getSelection().removeAllRanges();
-    setTimeout(() => {
-        copyText.classList.remove("active")
-    }, 2000);
+textarea.addEventListener('change', function(event) {
+    let content = textarea.value;
+    let status;
+
+    if (content !== null && content !== '') { status = false }
+    else { status = true }
+
+    btnDecrypt.disabled = status;
+    btnEncrypt.disabled = status;
 });
+
+document.querySelector("#copy-text button").addEventListener('click', () => {
+    navigator.clipboard.writeText(textGenerated.textContent)
+    showCopiedPopup()
+});
+
+function showCopiedPopup() {
+    let copyText = document.querySelector('copy-text');
+    copyText.classList.add("active")
+
+    setTimeout(() => { copyText.classList.remove("active") }, 2000);
+}

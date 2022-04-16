@@ -8,11 +8,13 @@
     <title>Encoder</title>
 </head>
 <body>
+
     <object class="logo" data="./images/logo.svg" style="position: absolute;"></object>
     <main>
 
         <div>
-            <textarea class="text" style="--fs: 32px; --c: var(--dark);" placeholder="Type your text here..."></textarea>
+
+            <textarea class="text typedTxt" style="--fs: 32px; --c: var(--dark);" placeholder="Type your text here..."></textarea>
         </div>
         <footer>
 
@@ -29,7 +31,9 @@
         </footer>
     </main>
     <aside>
+
         <div class="noMsg" id="noMsg">
+
             <object data="./images/noMessage.svg"></object>
             <section>
 
@@ -38,16 +42,18 @@
             </section>
         </div>
         <div class="genTxt" id="genTxt">
+
+            <h2 class="text" style="--fs: 32px; --c: var(--dark);">Generated Text</h2>
             <div>
-                <h2 class="text" style="--fs: 32px; --c: var(--dark);">Generated Text</h2>
-                <input class="text" style="--fs: 16px; --c: var(--dark);" type="text" readonly>
+
+                <p id="genTxtP" class="text" style="--fs: 16px; --c: var(--dark);"></p>
             </div>
             <div id="copy-text">
+
                 <button>Copy</button>
             </div>
         </div>
     </aside>
     <script src="./script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </body>
 </html>
